@@ -1,15 +1,15 @@
-const Sequelize = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const database = require('../../../config/database');
 
 const illness = database.config.define('illness', {
     id: {
-		type: Sequelize.INTEGER(10),
+		type: DataTypes.INTEGER,
 		autoIncrement: true,
 		primaryKey: true,
 		field: 'id'
 	},
     illness_name: {
-		type: Sequelize.STRING(50),
+		type: DataTypes.STRING,
 		allowNull: false,
 		field: 'illness_name'
 	},
