@@ -18,5 +18,5 @@ app.get("/", (req, res) => {
 app.use(require('./src/routes.js'));
 app.use(bodyParser.json());
 
-app.listen(port, () => console.log(`Server running on port: http://localhost${port}`) );
+app.listen(port, () => console.log(`Server running on port: http://localhost:${port}`) );
 
