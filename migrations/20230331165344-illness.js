@@ -1,26 +1,27 @@
 'use strict';
-const illness = require('../src/apis/diseases/models/illness');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('illness', {
+    await queryInterface.createTable('illnesses', {
       id: {
-      type: Sequelize.INTEGER(10),
+      type: Sequelize.SMALLINT,
       autoIncrement: true,
       primaryKey: true,
       field: 'id'
     },
       illness_name: {
-      type: Sequelize.STRING(50),
+      type: Sequelize.STRING(25),
       allowNull: false,
-      field: 'illness_name'
+      field: 'illness_name',
+      unique: true
     },
   
   }, { timestamps: false });
+  
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('illnesses');
   }
 };
