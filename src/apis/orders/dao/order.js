@@ -19,7 +19,17 @@ async function addOrderItems(data, transaction) {
 	}
 }
 
+async function getOrderDetails(name, dateOfBirth, phoneNo) {
+	try {
+		let result = await order.findOne({attributes: ['id'], where: {name: name, dateOfBirth: dateOfBirth, phoneNo: phoneNo}});
+		return result;
+	} catch (error) {
+		throw error;
+	}
+}
+
 module.exports = {
 	placeOrder,
-	addOrderItems
+	addOrderItems,
+	getOrderDetails
 }

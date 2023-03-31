@@ -5,7 +5,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const database = require('../../../config/database');
 
 const IllnessItem = database.config.define(
-    "illness_item",
+    "illness_item_mapping",
     {
         id: {
             allowNull: false,
@@ -15,7 +15,7 @@ const IllnessItem = database.config.define(
             field: 'id',
         },
         illness_id: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.SMALLINT,
             allowNull: false,
             field: 'illness_id',
             references: {
@@ -24,7 +24,7 @@ const IllnessItem = database.config.define(
             }
         },
         item_id: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.SMALLINT,
             allowNull: false,
             field: 'item_id',
             references: {
@@ -34,6 +34,14 @@ const IllnessItem = database.config.define(
         }
     },
     { timestamps: true }
+    ,{
+        indexes: [
+          {
+            unique: true,
+            fields: ['illness_id', 'item_id'] 
+          }
+        ]
+      }
 );
 
 IllnessItem.belongsTo(Illness,{

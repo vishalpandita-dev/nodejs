@@ -2,6 +2,8 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const database = require('../../../config/database');
 
+const illness = require('../../diseases/models/illness');
+
 const Order = database.config.define('order', {
 	id: {
 		type: DataTypes.INTEGER,
@@ -45,7 +47,11 @@ const Order = database.config.define('order', {
 	type_of_illness: {
 		type: DataTypes.STRING(25),
 		allowNull: false,
-		field: 'typeOfIllness'
+		field: 'typeOfIllness',
+		references: {
+			model: illness, 
+			key: 'illness_name', 
+		}
 	},
 	illness_since: {
 		type: DataTypes.DATEONLY,
@@ -81,7 +87,7 @@ const Order = database.config.define('order', {
 		field: 'email'
 	},
 	delivery_address: {
-		type: DataTypes.STRING,
+		type: DataTypes.STRING(255),
 		allowNull: false,
 		field: 'delivery_address'
 	},
@@ -115,7 +121,20 @@ const Order = database.config.define('order', {
 		allowNull: false,
 		field: 'postCode'
 	}   
-}, { timestamps: true });
+}, { timestamps: true }, {
+	indexes: [
+	  {
+		unique: true,
+		fields: ['name', 'date_of_birth', 'phone_number']
+	  }
+	]
+  });
 
+Order.belongsTo(illness,{
+    foreignKey:"type_of_illness",
+    targetKey:"illness_name",
+    as:"illness"
+})
 Order.sync().then();
+
 module.exports = Order;

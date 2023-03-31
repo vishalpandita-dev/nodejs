@@ -14,7 +14,7 @@ const orderItems = database.config.define('order_items', {
 		}
 	},
 	item_id: {
-		type: DataTypes.INTEGER,
+		type: DataTypes.SMALLINT,
 		allowNull: false,
 		field: 'item_id',
         references: {

@@ -9,12 +9,13 @@ const BasketItem = database.config.define(
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
-            type: DataTypes.INTEGER,
+            type: DataTypes.SMALLINT,
             field: 'item_id'
         },
         item_name: {
             type: DataTypes.STRING(25),
             allowNull: false,
+            unique: true,
             field: 'item_name'
         },
         item_description: {
@@ -23,7 +24,7 @@ const BasketItem = database.config.define(
             field: 'item_description'
         },
         age_group: {
-            type: Sequelize.ENUM("0-5","6-10","11-16"),
+            type: DataTypes.ENUM("0-5","6-10","11-16"),
             allowNull: false,
             field: 'age_group'
         }
