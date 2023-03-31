@@ -1,17 +1,17 @@
-const diseases = require('../dao/illness');
+const illness = require('../dao/illness');
 const errorhandle = require('../../../config/dberrorHandle');
 
-const getDiseaseNames = async function getDiseaseName() {
+const getIllnessNames = async function getIllnessNames() {
     try {
-        const diseaseNames = await diseases.getAllDiseases();
-        return diseaseNames;
+        const illnessNames = await illness.getAllIllness();
+        return illnessNames;
     } catch (e) {
-        console.log(JSON.stringify({event: 'diseases', method: 'getDiseaseNames', error: e.stack}));
+        console.log(JSON.stringify({event: 'illness', method: 'getIllnessNames', error: e.stack}));
         const errorResponse = errorhandle.handleDbError(e);
         return errorResponse;
     }
 };
 
 module.exports = {
-    getDiseaseNames
+    getIllnessNames
 }
