@@ -121,6 +121,17 @@ function validateRequest(body, res){
         throw res.status(400).json({ status: 400, type: "error", message: errorMessage, data: [] });
     }
 }
+
+const getOrderCount = async function getOrderCount(body, res) {
+    try {
+		const ordercountData = await orderDao.orderCount();
+		return ordercountData;
+	} catch (e) {
+		const errorResponse = errorhandle.handleDbError(e);
+		return errorResponse;
+	}
+};
 module.exports = {
-    addNewOrder
+    addNewOrder,
+	getOrderCount
 }
