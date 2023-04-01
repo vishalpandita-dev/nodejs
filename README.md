@@ -25,12 +25,13 @@ Run `npm install` to install all the project dependencies.
 
 Install Postgres in your local systme(https://www.postgresql.org)
 
-Important Step - Create database with name `codechallenge` using command 
-`sudo psql -U postgres -c "CREATE DATABASE codechallenge;"`
+Important Step - Create database with name `codechallenge` and database user with name `treatuser` using command 
 
-Important Step - Create database user and add database access previlages using below commands:
-`sudo psql -U postgres -c "CREATE USER treatuser WITH PASSWORD 'admin';"`
-`sudo psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE codechallenge TO treatuser;"`
+`
+CREATE DATABASE codechallenge;
+CREATE USER treatuser WITH PASSWORD 'admin';
+GRANT ALL PRIVILEGES ON DATABASE codechallenge TO treatuser;
+`
 
 Important Step - Create Database tables run command: `npm run dbmigrate`
 
